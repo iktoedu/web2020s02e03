@@ -13,5 +13,9 @@ $route = new Route('/login', [
     '_public' => TRUE,
 ]);
 $routes->add('login', $route);
+$route = new Route('/add', [
+    '_controller' => ['App\\Controller\\CrudController', 'addAction'],
+]);
+$routes->add('add', $route);
 
 return $routes;

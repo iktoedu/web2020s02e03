@@ -1,0 +1,21 @@
+{% extends "_page.html.twig" %}
+
+{% block content %}
+    <form action="" method="post">
+        <div>
+            <label for="name_last">Прізвище:</label>
+            <input type="text" name="name_last" id="name_last" required>
+        </div>
+        <div>
+            <label for="name_first">Ім'я:</label>
+            <input type="text" name="name_first" id="name_first" required>
+        </div>
+        <div>
+            <label for="name_patronymic">По батькові:</label>
+            <input type="text" name="name_patronymic" id="name_patronymic">
+        </div>
+        <div>
+            <input type="submit" value="Add">
+        </div>
+    </form>
+{% endblock %}
