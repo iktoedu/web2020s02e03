@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouteCollection;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -18,6 +21,19 @@ abstract class ControllerBase
      */
     private $db;
 
+    /**
+     * @var RouteCollection
+     */
+    private $routes;
+
+    /**
+     * @param RouteCollection $routes
+     */
+    public function setRoutes(RouteCollection $routes): void
+    {
+        $this->routes = $routes;
+    }
+
     protected function render($template, $params) {
         if ($this->twig === NULL) {
             $loader = new FilesystemLoader(__DIR__ . '/../templates');
@@ -33,6 +49,15 @@ abstract class ControllerBase
         }
 
         return $this->db;
+    }
+
+    protected function generateUrl($request, $route_name, $parameters = []) {
+        $request_context = new RequestContext();
+        $request_context->fromRequest($request);
+
+        $generator = new UrlGenerator($this->routes, $request_context);
+
+        return $generator->generate($route_name, $parameters);
     }
 
 }

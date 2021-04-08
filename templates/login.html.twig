@@ -1,0 +1,20 @@
+{% extends "_page.html.twig" %}
+
+{% block content %}
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    <form action="" method="post">
+        <div>
+            <label for="username">Логін:</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Пароль:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <input type="submit" value="Log In">
+        </div>
+    </form>
+{% endblock %}
